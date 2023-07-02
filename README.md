@@ -18,7 +18,8 @@ Install docker:
 ```bash
 sudo yum install -y yum-utils
 
-sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+sudo yum-config-manager --add-repo \
+https://download.docker.com/linux/centos/docker-ce.repo
 
 sudo yum install docker-ce docker-ce-cli containerd.io
 sudo systemctl start docker
@@ -27,7 +28,8 @@ sudo systemctl start docker
 Then start the container:
 
 ```bash
-docker run -d -p 1234:1234 -e USERNAME="Your Username" -e PASSWORD="Tour Password" PANELPORT="Your Port" xuidocker
+docker run -d -p 1234:1234 -e USERNAME="Your Username" \
+-e PASSWORD="Tour Password" PANELPORT="Your Port" xuidocker
 ```
 
 ## docker-compose
@@ -35,7 +37,8 @@ docker run -d -p 1234:1234 -e USERNAME="Your Username" -e PASSWORD="Tour Passwor
 Install docker-compose:
 
 ```bash
-sudo curl -L "https://github.com/docker/compose/releases/download/1.25.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo curl -L "https://github.com/docker/compose/releases/download/1.25.4/\
+docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 
 sudo chmod +x /usr/local/bin/docker-compose
 ```
@@ -60,9 +63,9 @@ Check out the main project [x-ui](https://github.com/vaxilu/x-ui) by vaxilu.
 
 | Variable | Default value | Description |
 | --- | --- | --- |
-| USERNAME | `admin` | Username to access the panel. |
-| PASSWORD | `admin` | Password to access the panel. |
-| PANELPORT | `1234` | The port to access the panel. |
+| ``USERNAME`` | `admin` | *Username to access the panel* |
+| ``PASSWORD`` | `admin` | *Password to access the panel* |
+| ``PANELPORT`` | `1234` | *The port to access the panel* |
 
 Pass down your desired variables to `docker-compose.yml` file.
 
