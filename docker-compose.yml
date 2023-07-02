@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   x-ui:
-    image: xuitest1
+    image: freddykrum/x-ui
     ports:
       - "12345:12345" # Panel port
       - "8999:8999" # Service port
