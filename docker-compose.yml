@@ -1,0 +1,18 @@
+version: "3.7"
+services:
+  x-ui:
+    image: xuitest1
+    ports:
+      - "12345:12345" # Panel port
+      - "8999:8999" # Service port
+    environment:
+      USERNAME:     admin
+      PASSWORD:     admin
+      PANELPORT:    12345
+    volumes:
+      - xuipath:/etc/x-ui
+      - xuiconf:/usr/local/x-ui
+    restart: always
+volumes:
+  xuipath:
+  xuiconf:
