@@ -28,8 +28,9 @@ sudo systemctl start docker
 Then start the container:
 
 ```bash
-docker run -d -p 1234:1234 -e USERNAME="Your Username" \
--e PASSWORD="Tour Password" PANELPORT="Your Port" xuidocker
+docker run -d -p 1234:1234 -p "Other ports" -e USERNAME="Your Username" \
+-e PASSWORD="Tour Password" PANELPORT="Your Port"\
+--restart=unless-stopped freddykrum/x-ui
 ```
 
 ## docker-compose
@@ -46,8 +47,10 @@ sudo chmod +x /usr/local/bin/docker-compose
 Edit `docker-compose.yml` to your desired settings, then start the container:
 
 ```bash
-git clone dbbbb && cd dbbbbb
-docker compose up -d
+mkdir x-ui && cd x-ui
+git clone https://raw.githubusercontent.com/laphrog\
+/x-ui/main/docker-compose.yml
+docker-compose up -d
 ```
 
 ### Build your own image
