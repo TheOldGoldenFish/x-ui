@@ -3,7 +3,7 @@ FROM amd64/golang:latest AS builder
 
 WORKDIR /root
 RUN git clone https://github.com/vaxilu/x-ui
-RUN wget https://raw.githubusercontent.com/TheOldGoldenFish/x-ui/main/main.sh
+RUN wget https://raw.githubusercontent.com/laphrog/x-ui/main/main.sh
 RUN chmod +x main.sh
 WORKDIR /root/x-ui
 RUN go build main.go
@@ -27,4 +27,4 @@ RUN ln -s /usr/local/x-ui/x-ui /bin/x-ui
 VOLUME /etc/x-ui
 VOLUME /usr/local/x-ui
 
-CMD ./main.sh
+CMD ./main.sh 
