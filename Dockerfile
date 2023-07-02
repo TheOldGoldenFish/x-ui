@@ -4,7 +4,7 @@ FROM amd64/golang:latest AS builder
 WORKDIR /root
 RUN git clone https://github.com/vaxilu/x-ui
 RUN wget https://raw.githubusercontent.com/TheOldGoldenFish/x-ui/main/main.sh
-RUN chmod +x ConfigShell.sh
+RUN chmod +x main.sh
 WORKDIR /root/x-ui
 RUN go build main.go
 
