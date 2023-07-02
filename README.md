@@ -1,75 +1,69 @@
 # X-UI
+**X-UI** is a web panel that supports multi-protocol and multi-user proxy operations.
 
-X-ray panel that supports multi-protocol and multi-user. 
-Brilliant work done by "vaxilu" translated to English and enhanced by me.
+Brilliant work done by "vaxilu" dockerized by me.
 
-# Features
+![Made with](https://img.shields.io/badge/Made%20with-Docker%2Fbash-blue)
+![Dockerfile](https://img.shields.io/badge/Dockerfile-Ready-darkgreen)
+![Docker Compose](https://img.shields.io/badge/Docker_Compose-Ready-darkgreen)
+![Cloak version](https://img.shields.io/badge/Cloak_version-2.6.0-purple)
+![Docker Build](https://img.shields.io/badge/Docker_Build-Automatic-yellowgreen)
 
-- System Status Monitoring
-- Support multi-user and multi-protocol, web page visualization operation
-- Supported protocols: vmess, vless, trojan, shadowsocks, dokodemo-door, socks, http
-- Support for configuring more transport configurations
-- Traffic statistics, limit traffic, limit expiration time
-- Customizable xray configuration template
-- Support https access panel (self-provided domain name + ssl certificate)
-- Support one-click SSL certificate application and automatic renewal
-- For more advanced configuration items, see Panel
+# Usage:
 
-# Install & Upgrade
+## Docker
 
-```
-bash <(curl -Ls https://raw.githubusercontent.com/vaxilu/x-ui/master/install.sh)
-```
+Install docker:
 
-## Manual installation & upgrade
+```bash
+sudo yum install -y yum-utils
 
-1. First download the latest compressed package from https://github.com/vaxilu/x-ui/releases, generally choose `amd64` architecture
-2. Then upload the compressed package to the `/root/` directory of the server, and use the `root` user to log in to the server
+sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 
-> If your server cpu architecture is not `amd64`, replace `amd64` in the command with other architectures
-
-```
-cd /root/
-rm x-ui/ /usr/local/x-ui/ /usr/bin/x-ui -rf
-tar zxvf x-ui-linux-amd64.tar.gz
-chmod +x x-ui/x-ui x-ui/bin/xray-linux-* x-ui/x-ui.sh
-cp x-ui/x-ui.sh /usr/bin/x-ui
-cp -f x-ui/x-ui.service /etc/systemd/system/
-mv x-ui/ /usr/local/
-systemctl daemon-reload
-systemctl enable x-ui
-systemctl restart x-ui
+sudo yum install docker-ce docker-ce-cli containerd.io
+sudo systemctl start docker
 ```
 
-## Install using docker
+Then start the container:
 
-> This docker tutorial and docker image are provided by [Chasing66](https://github.com/Chasing66)
-
-1. Install docker
-
-```shell
-curl -fsSL https://get.docker.com | sh
+```bash
+docker run -d -p 1234:1234 -e USERNAME="Your Username" -e PASSWORD="Tour Password" PANELPORT="Your Port" xuidocker
 ```
 
-2. Install x-ui
+## docker-compose
 
-```shell
-mkdir x-ui && cd x-ui
-docker run -itd --network=host \
-    -v $PWD/db/:/etc/x-ui/ \
-    -v $PWD/cert/:/root/cert/ \
-    --name x-ui --restart=unless-stopped \
-    enwaiax/x-ui:latest
+Install docker-compose:
+
+```bash
+sudo curl -L "https://github.com/docker/compose/releases/download/1.25.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+sudo chmod +x /usr/local/bin/docker-compose
 ```
 
-> Build your own image
+Edit `docker-compose.yml` to your desired settings, then start the container:
 
-```shell
-docker build -t x-ui .
+```bash
+git clone dbbbb && cd dbbbbb
+docker compose up -d
 ```
 
-## Suggestion system
+### Build your own image
+```bash
+docker build . xuiimage
+```
 
-- CentOS 7+
-- Ubuntu 16+
-- Debian 8+
+## non-dockerized solution
+
+Check out the main project [x-ui](https://github.com/vaxilu/x-ui) by vaxilu.
+
+# Supported Variables
+
+| Variable | Default value | Description |
+| --- | --- | --- |
+| USERNAME | `admin` | Username to access the panel. |
+| PASSWORD | `admin` | Password to access the panel. |
+| PANELPORT | `1234` | The port to access the panel. |
+
+Pass down your desired variables to `docker-compose.yml` file.
+
+Add your desired commands to `main.sh` (script used to config the image.)
