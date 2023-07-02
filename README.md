@@ -55,7 +55,7 @@ docker-compose up -d
 
 ### Build your own image
 ```bash
-docker build . xuiimage
+docker build . -t xuiimage
 ```
 
 ## non-dockerized solution
