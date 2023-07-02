@@ -22,6 +22,7 @@ sudo yum-config-manager --add-repo \
 https://download.docker.com/linux/centos/docker-ce.repo
 
 sudo yum install docker-ce docker-ce-cli containerd.io
+
 sudo systemctl start docker
 ```
 
@@ -48,8 +49,10 @@ Edit `docker-compose.yml` to your desired settings, then start the container:
 
 ```bash
 mkdir x-ui && cd x-ui
-git clone https://raw.githubusercontent.com/laphrog\
+
+wget https://raw.githubusercontent.com/laphrog\
 /x-ui/main/docker-compose.yml
+
 docker-compose up -d
 ```
 
